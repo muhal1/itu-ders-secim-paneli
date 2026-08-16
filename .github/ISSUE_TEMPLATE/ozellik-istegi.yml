@@ -1,0 +1,25 @@
+name: 💡 Özellik isteği
+description: Panele eklenmesini istediğin bir şey var
+title: "[Özellik]: "
+labels: ["özellik"]
+body:
+  - type: textarea
+    id: ihtiyac
+    attributes:
+      label: Hangi sorunu çözüyor?
+      description: Özelliğin kendisinden çok, seni zorlayan durumu anlat. Çözüm başka türlü de olabilir.
+      placeholder: "Ders seçerken hangi hocanın dersinin daha dolu olduğunu görmek istiyorum çünkü..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: oneri
+    attributes:
+      label: Aklındaki çözüm
+      description: Nasıl çalışmasını hayal ediyorsun?
+
+  - type: textarea
+    id: ek
+    attributes:
+      label: Ek bilgi
+      description: Ekran görüntüsü, örnek, benzer bir araçtan referans varsa buraya.

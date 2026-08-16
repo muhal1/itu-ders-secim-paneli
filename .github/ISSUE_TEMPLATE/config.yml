@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Kurulum yardımı
+    url: https://github.com/muhal1/itu-ders-secim-paneli#-hızlı-başlangıç
+    about: Kurulum adımları README'de. Agent ile kurulum için AGENTS.md dosyasına bak.
+  - name: 🔒 Güvenlik sorunu
+    url: https://github.com/muhal1/itu-ders-secim-paneli/security/advisories/new
+    about: Güvenlik açıklarını herkese açık issue yerine buradan bildir.

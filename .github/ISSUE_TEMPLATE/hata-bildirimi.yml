@@ -1,0 +1,70 @@
+name: 🐛 Hata bildirimi
+description: Panel çalışmıyor, veri eksik geliyor ya da bir şey beklendiği gibi davranmıyor
+title: "[Hata]: "
+labels: ["hata"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Teşekkürler! ÖBS arayüzü değiştiğinde ayrıştırma bozulabiliyor,
+        bu tür bildirimler projenin çalışır kalmasını sağlıyor.
+
+  - type: textarea
+    id: sorun
+    attributes:
+      label: Ne oldu?
+      description: Ne yapmaya çalıştın, bunun yerine ne oldu?
+      placeholder: "python panel.py guncelle çalıştırdım, ders planı boş geldi."
+    validations:
+      required: true
+
+  - type: input
+    id: bolum
+    attributes:
+      label: Bölümün
+      placeholder: "Bilgisayar Mühendisliği Lisans"
+    validations:
+      required: true
+
+  - type: input
+    id: planid
+    attributes:
+      label: planId
+      description: "`veri/ayarlar.json` dosyasında yazıyor"
+      placeholder: "1561"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: seviye
+    attributes:
+      label: Seviye
+      options:
+        - LS (Lisans)
+        - LU (Yüksek Lisans / Doktora)
+        - OL (Ön Lisans)
+        - LUI (Lisansüstü 2. Öğretim)
+    validations:
+      required: true
+
+  - type: textarea
+    id: cikti
+    attributes:
+      label: Hata çıktısı
+      description: Terminaldeki çıktıyı olduğu gibi yapıştır. Tarayıcıyla ilgiliyse konsol hatasını (F12) ekle.
+      render: shell
+
+  - type: input
+    id: python
+    attributes:
+      label: Python sürümü
+      description: "`python --version` çıktısı"
+      placeholder: "Python 3.12.1"
+
+  - type: checkboxes
+    id: kontroller
+    attributes:
+      label: Kontroller
+      options:
+        - label: Kişisel verimi (not, öğrenci numarası, transkript) bu bildirime eklemedim
+          required: true

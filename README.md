@@ -10,6 +10,12 @@ ekranına yapıştıracağın CRN listesini üretmeni sağlar.
 * Kurulum yok: **sadece Python 3.9+** yeter, tek bir paket bile kurmazsın.
 * Veriler proje klasöründe düz JSON olarak durur.
 
+> ⚠️ **Resmî bir İTÜ uygulaması değildir.** İstanbul Teknik Üniversitesi ile
+> bağlantısı yoktur, üniversite tarafından desteklenmez. Yalnızca ÖBS'nin
+> herkese açık sayfalarındaki veriyi okur. Kontenjan, önşart ve mezuniyet
+> gereksinimlerinde **resmî kaynak her zaman ÖBS'dir**; ders kaydını da ÖBS
+> üzerinden sen yaparsın.
+
 ![Ders Seçim Paneli genel görünüm](docs/01-genel.png)
 
 ---
@@ -313,8 +319,30 @@ snapshot'lar karşılaştırma için oradadır.
 ## Notlar ve sınırlar
 
 * Panel kayıt **yapmaz**; CRN listesini üretir, kaydı sen ÖBS'de yaparsın.
+* Proje resmî bir İTÜ uygulaması değildir ve üniversiteyle bağlantısı yoktur.
 * Kontenjan ve "yazılan" sayıları çekildiği andaki değerlerdir, canlı değildir.
 * Gereksinim eşlemesi açgözlü (greedy) bir eşlemedir: önce listesi belli
   slotlar, sonra serbest seçmeliler doldurulur. Danışman onayı, önşart ve
   kredi üst sınırı gibi kuralları **kontrol etmez** — resmî kaynak ÖBS'dir.
 * Sunucu yalnızca `127.0.0.1` dinler, dışarıya açık değildir.
+
+---
+
+## Katkı ve lisans
+
+Katkıya açık — hata bildirimi, özellik önerisi ve pull request hepsi olur.
+Başlamadan önce [`CONTRIBUTING.md`](CONTRIBUTING.md) dosyasına göz at; projenin
+birkaç bilinçli tercihi var (bağımlılık eklenmez, adlandırma Türkçedir).
+
+* 🐛 Bir şey bozulduysa [issue aç](../../issues/new/choose)
+* 🔒 Güvenlik sorunlarını herkese açık issue yerine
+  [özel bildirimle](../../security/advisories/new) gönder — bkz.
+  [`SECURITY.md`](SECURITY.md)
+* 🤝 [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
+
+ÖBS arayüzü değiştiğinde ayrıştırma kırılabilir; **en değerli katkı bu tür hata
+bildirimleridir.** Bildirirken bölümünü, `planId`'ni ve hata çıktısını eklemen
+yeterli.
+
+[MIT lisansı](LICENSE) ile dağıtılır. Kısaca: kullanabilir, değiştirebilir,
+kendi bölümüne uyarlayıp paylaşabilirsin; tek şart telif notunu korumak.
