@@ -1,0 +1,7 @@
+{
+  "_aciklama": "Bu dosyayı kendi bölümüne göre doldur. planId'yi bulmak için: python panel.py ara <bölüm adı>",
+  "bolum": "",
+  "planId": 0,
+  "seviye": "LU",
+  "ekBransKodlari": []
+}

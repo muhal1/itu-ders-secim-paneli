@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Kişisel veri — bu depo herkese açıktır, veri/ ASLA yüklenmez.
+# Kurulumda sablon/ içindeki boş dosyalardan oluşturulur (bkz. AGENTS.md).
+veri/
+
+# Paylaşım paketleri
+*.zip

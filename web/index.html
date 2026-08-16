@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ders Seçim Paneli</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>📘</text></svg>">
+</head>
+<body>
+
+<header class="ust">
+  <div class="ust-sol">
+    <h1 id="bolumAdi">Ders Seçim Paneli</h1>
+    <div class="ust-bilgi">
+      <span id="donemEtiketi" class="rozet">—</span>
+      <span id="veriTarihi" class="soluk"></span>
+    </div>
+  </div>
+  <div class="ust-sag">
+    <button id="yenileDugmesi" class="dugme"
+            title="Açılan dersleri ve kontenjanları ÖBS'den yeniden çeker">
+      ⟳ Kontenjan yenile
+    </button>
+    <button id="alinanAc" class="dugme">Alınan Dersler <span id="alinanSayi" class="sayac">0</span></button>
+  </div>
+</header>
+
+<div id="uyari" class="uyari gizli"></div>
+
+<main class="duzen">
+
+  <!-- ================= SOL: plan + ders listesi ================= -->
+  <section class="sutun sol">
+
+    <div class="kutu">
+      <div class="kutu-baslik">
+        <h2>Mezuniyet Gereksinimleri</h2>
+        <span id="ilerlemeOzet" class="soluk"></span>
+      </div>
+      <div id="gereksinimListesi" class="gereksinimler"></div>
+    </div>
+
+    <div class="kutu">
+      <div class="kutu-baslik">
+        <h2>Bu Dönem Açılan Dersler</h2>
+        <span id="dersSayisi" class="soluk"></span>
+      </div>
+
+      <div class="suzgecler">
+        <input id="arama" type="search" placeholder="Ders kodu, ad veya hoca ara…" autocomplete="off">
+        <select id="gereksinimSuzgeci">
+          <option value="">Tüm gereksinimler</option>
+        </select>
+        <label class="onay"><input type="checkbox" id="alinaniGizle" checked> Aldıklarımı gizle</label>
+        <label class="onay"><input type="checkbox" id="cakisaniGizle"> Çakışanları gizle</label>
+        <label class="onay"><input type="checkbox" id="doluGizle"> Kontenjanı doluları gizle</label>
+      </div>
+
+      <div id="dersListesi" class="ders-listesi"></div>
+    </div>
+  </section>
+
+  <!-- ================= SAĞ: program + seçim ================= -->
+  <section class="sutun sag">
+
+    <div class="kutu">
+      <div class="kutu-baslik">
+        <div class="profil-bar">
+          <h2>Haftalık Program</h2>
+          <select id="profilSecici" title="Program profili"></select>
+          <button id="profilYeni" class="dugme minik" title="Yeni boş program ekle">+</button>
+          <button id="profilKopyala" class="dugme minik" title="Bu programın kopyasını çıkar">⧉</button>
+          <button id="profilAd" class="dugme minik" title="Adını değiştir">✎</button>
+          <button id="profilSil" class="dugme minik" title="Bu programı sil">×</button>
+        </div>
+        <span id="cakismaUyari" class="rozet kirmizi gizli">Çakışma var</span>
+      </div>
+      <div id="program" class="program"></div>
+    </div>
+
+    <div class="kutu">
+      <div class="kutu-baslik">
+        <h2>Seçilen Dersler <span id="aktifProfilAdi" class="soluk"></span></h2>
+        <button id="secimTemizle" class="dugme kucuk sessiz">Temizle</button>
+      </div>
+      <div id="secimListesi" class="secim-listesi"></div>
+      <div class="crn-alani">
+        <label for="crnKutusu">Ders kayıt ekranına yapıştırılacak CRN'ler</label>
+        <div class="crn-satir">
+          <input id="crnKutusu" type="text" readonly>
+          <button id="crnKopyala" class="dugme kucuk">Kopyala</button>
+          <a id="crnYerImi" class="dugme kucuk yerimi" href="javascript:void(0)"
+             title="Bu bağlantıyı tarayıcının yer imi çubuğuna sürükle">⇱ CRN doldur</a>
+        </div>
+        <div id="secimOzet" class="soluk"></div>
+        <div class="yerimi-ipucu soluk kucuk-yazi">
+          <b>⇱ CRN doldur</b> bağlantısını tarayıcının <b>yer imi çubuğuna sürükle</b>
+          (çubuk kapalıysa Ctrl+Shift+B ile aç). ÖBS ders kayıt ekranındayken o yer
+          imine tıklayınca CRN kutucukları bu programdaki derslerle dolar.
+          Seçimini değiştirirsen yer imini yeniden sürüklemen gerekir.
+          Sürükleyemiyorsan bağlantıya tıkla — kodu panoya kopyalar, yer imini elle
+          oluşturup adres alanına yapıştırabilirsin.
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= YAN PANEL: alınan dersler ================= -->
+<div id="perde" class="perde gizli"></div>
+<aside id="yanPanel" class="yan-panel">
+  <div class="yan-baslik">
+    <h2>Alınan Dersler</h2>
+    <button id="alinanKapat" class="dugme kucuk sessiz">Kapat</button>
+  </div>
+
+  <div class="yan-icerik">
+    <p class="soluk kucuk-yazi">
+      Şimdiye kadar başarıyla tamamladığın dersler. Buradaki liste hem gereksinim
+      takibinde hem de ders listesinde “aldın” işaretlemesinde kullanılır.
+    </p>
+
+    <form id="alinanForm" class="alinan-form">
+      <div class="alan">
+        <label for="yeniKod">Ders kodu</label>
+        <input id="yeniKod" list="planDersleri" placeholder="KOM 505" required autocomplete="off">
+        <datalist id="planDersleri"></datalist>
+      </div>
+      <div class="alan">
+        <label for="yeniAd">Ders adı <span class="soluk">(planda varsa otomatik)</span></label>
+        <input id="yeniAd" placeholder="Olasılık Kuramı" autocomplete="off">
+      </div>
+      <div class="alan-ikili">
+        <div class="alan">
+          <label for="yeniDonem">Dönem</label>
+          <input id="yeniDonem" placeholder="2024-2025 Güz" autocomplete="off">
+        </div>
+        <div class="alan">
+          <label for="yeniNot">Not</label>
+          <input id="yeniNot" placeholder="AA" autocomplete="off">
+        </div>
+      </div>
+      <button type="submit" class="dugme birincil">Ekle</button>
+    </form>
+
+    <div id="alinanListesi" class="alinan-listesi"></div>
+  </div>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>
