@@ -10,31 +10,92 @@ ekranına yapıştıracağın CRN listesini üretmeni sağlar.
 * Kurulum yok: **sadece Python 3.9+** yeter, tek bir paket bile kurmazsın.
 * Veriler proje klasöründe düz JSON olarak durur.
 
-> Yeni birine bu projeyi zip'leyip verdiysen: [`AGENTS.md`](AGENTS.md) dosyasını
-> kendi yapay zekâ asistanına ver, kurulumu o yapsın.
-
 ![Ders Seçim Paneli genel görünüm](docs/01-genel.png)
 
 ---
 
-## Hızlı başlangıç
+## 🚀 Hızlı başlangıç
+
+**Tek ön koşul:** bilgisayarında Python 3.9+ kurulu olsun. Başka hiçbir şey
+gerekmez — `pip install` yok, hesap yok, kurulum sihirbazı yok.
+
+```bash
+git clone https://github.com/muhal1/itu-ders-secim-paneli
+```
+
+Sonrasında iki yol var:
+
+| Seçenek | Kime uygun | Süre |
+|---|---|---|
+| 🤖 **Agent ile kurulum** | Terminalle uğraşmak istemeyene | 2 soruya cevap ver, gerisini o yapar |
+| 🔧 **Elle kurulum** | Kontrolü elinde tutmak isteyene | 4 komut, ~2 dakika |
+
+<br>
+
+### 🤖 Seçenek 1 — Agent ile kurulum
+
+**En kolayı. Teknik bilgi gerekmez.**
+
+Proje klasöründeki [`AGENTS.md`](AGENTS.md) dosyasını yapay zekâ asistanına
+(Claude Code, Cursor, Copilot…) ver ve şunu söyle:
+
+> *AGENTS.md dosyasındaki adımları izleyerek bu paneli benim bölümüme göre kur.*
+
+Asistan sırasıyla şunları yapar:
+
+| | |
+|---|---|
+| 🎓 | **"Hangi bölümdesin?"** diye sorar |
+| 🔍 | Bölümünün plan numarasını ÖBS'den kendisi bulur |
+| 📥 | Ders planını ve bu dönem açılan dersleri çeker |
+| 📝 | **"Şimdiye kadar hangi dersleri aldın?"** diye sorar |
+| 🖥️ | Paneli tarayıcıda açar |
+
+Senin yapman gereken tek şey iki soruya cevap vermek.
+
+<br>
+
+### 🔧 Seçenek 2 — Elle kurulum
+
+#### 1️⃣ Bölümünün plan numarasını bul
+
+```bash
+python panel.py ara "bilgisayar" --seviye LS
+```
+
+Seviye kodları: `LS` lisans · `LU` yüksek lisans/doktora · `OL` ön lisans ·
+`LUI` lisansüstü 2. öğretim
+
+Çıktıda programın ve plan sürümleri listelenir; genelde **en güncel** olan
+(en büyük `planId`) doğrudur.
+
+#### 2️⃣ Plan numarasını ayarlara yaz
+
+`veri/ayarlar.json` dosyasını aç, `planId` ve `seviye` alanlarını doldur:
+
+```json
+{ "bolum": "Bilgisayar Mühendisliği Lisans", "planId": 1561, "seviye": "LS", "ekBransKodlari": [] }
+```
+
+#### 3️⃣ Veriyi çek
 
 ```bash
 python panel.py guncelle
 ```
 
+#### 4️⃣ Paneli aç
+
 ```bash
 python panel.py
 ```
 
-İlk komut ders planını ve bu dönem açılan dersleri çeker; ikincisi paneli
-tarayıcıda açar (http://127.0.0.1:8730).
+Tarayıcıda <http://127.0.0.1:8730> açılır. 🎉
 
-`veri/ayarlar.json` içindeki `planId` seninkinden farklıysa önce onu ayarla:
+<br>
 
-```bash
-python panel.py ara "kontrol ve otomasyon" --seviye LU
-```
+> 💡 **Alınan dersleri kurulumda girmek zorunda değilsin.** Panelin sağ
+> üstündeki **"Alınan Dersler"** düğmesinden istediğin zaman ekleyip
+> silebilirsin.
 
 ---
 
@@ -205,6 +266,18 @@ veriyi yeniden çekmeden inceleyebilirsin.
 ---
 
 ## Başkasına verirken
+
+En kolayı depo adresini vermek:
+
+```bash
+git clone https://github.com/muhal1/itu-ders-secim-paneli
+```
+
+Karşı taraf `AGENTS.md`'yi kendi asistanına verir, kurulum kendiliğinden ilerler.
+Depoda kişisel veri yoktur; `veri/` klasörü `.gitignore`'dadır ve herkes kendi
+verisini `sablon/`'dan oluşturur.
+
+Git kullanmayan birine göndereceksen zip üret:
 
 ```bash
 python panel.py paketle
